@@ -1,0 +1,22 @@
+{
+  "cases": [
+    {
+      "profile": "profile_a",
+      "query": "Digitalisierung Vorhabensbeginn De-minimis",
+      "program_ids": ["KFW-ERP-DIGI-511", "KFW-ERP-DIGI-512", "ZIM", "KMU-INNOVATIV"],
+      "expected_rank": ["KFW-ERP-DIGI-511", "KFW-ERP-DIGI-512", "ZIM"]
+    },
+    {
+      "profile": "profile_grw_mv_invest_kmu",
+      "query": "Regionalförderung Investition neue Arbeitsplätze Produktionsstätte Primäreffekt",
+      "program_ids": ["GRW-MV-GEWERBE", "EEW-BAFA-M4-BASIS", "EEW-BAFA-M1", "KFW-ERP-DIGI-511"],
+      "expected_rank": ["GRW-MV-GEWERBE"]
+    },
+    {
+      "profile": "profile_go_inno_kmu",
+      "query": "Innovationsberatung autorisierte Beratungsunternehmen Produktinnovation technische Verfahrensinnovation",
+      "program_ids": ["GO-INNO", "KFW-ERP-DIGI-511", "EEW-BAFA-M3", "KMU-INNOVATIV"],
+      "expected_rank": ["GO-INNO"]
+    }
+  ]
+}

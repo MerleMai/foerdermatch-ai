@@ -1,0 +1,24 @@
+{
+  "company": {
+    "country": "DE",
+    "is_kmu": true,
+    "size_class": "kmu",
+    "in_grw_funding_area": true
+  },
+  "project": {
+    "start_status": "planned",
+    "category": "erweiterungsinvestition",
+    "has_primary_effect": true,
+    "meets_10_percent_jobs_or_50_percent_depreciation": true,
+    "is_r_and_d": false,
+    "has_technical_risk": false
+  },
+  "constraints": {
+    "de_minimis_status": "unknown",
+    "is_excluded_sector": false
+  },
+  "financing": {
+    "needs_guarantee": false,
+    "requires_deep_review": false
+  }
+}

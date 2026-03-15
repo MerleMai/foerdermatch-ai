@@ -1,0 +1,5 @@
+{
+  "company": { "is_kmu": true, "country": "DE" },
+  "project": { "start_status": "started" },
+  "constraints": { "de_minimis_status": "unknown" }
+}

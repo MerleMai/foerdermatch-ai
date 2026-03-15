@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FörderMatch AI – Demo Web App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">FM</div>
+          <div>
+            <div class="brand-eyebrow">IHK Heilbronn-Franken · Demo</div>
+            <h1>FörderMatch AI</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <span id="apiStatus" class="api-pill api-pill--idle">API nicht geprüft</span>
+          <button id="healthBtn" class="button button--ghost" type="button">API prüfen</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero panel">
+          <div class="hero-copy">
+            <h2>Strukturierte Profilerfassung, belastbares Ranking und quellengebundene Programmdetails.</h2>
+            <p>
+              Die Demo zeigt genau den MVP-Flow aus eurer Architektur: Profil erfassen, Programme ranken,
+              Blocker sichtbar machen und Detailbegründungen mit Quellen prüfen.
+            </p>
+            <div class="hero-actions">
+              <a href="#profilePanel" class="button">Demo starten</a>
+              <button id="loadScenarioBtn" class="button button--ghost" type="button">Beispielprofil laden</button>
+            </div>
+          </div>
+          <div class="hero-metrics">
+            <article class="metric-card">
+              <span class="metric-label">MVP-Flow</span>
+              <strong>Profil → Ranking → Detail → Export</strong>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Scoring</span>
+              <strong>Rule Score + Semantic Score</strong>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Explainability</span>
+              <strong>Status, Blocker, Next Actions, Quellen</strong>
+            </article>
+          </div>
+        </section>
+
+        <div class="workspace-grid">
+          <section id="profilePanel" class="panel panel--sticky">
+            <div class="section-header">
+              <div>
+                <h3>Profil-Erfassung</h3>
+              </div>
+            </div>
+
+            <form id="profileForm" class="form-grid">
+              <div class="form-group form-group--full">
+                <label for="apiBaseUrl">Backend-URL</label>
+                <input id="apiBaseUrl" name="apiBaseUrl" type="url" value="http://127.0.0.1:8000" />
+                <small>Standardmäßig lokale FastAPI-Demo.</small>
+              </div>
+
+              <div class="form-group">
+                <label for="branche">Branche</label>
+                <select id="branche" name="branche">
+                  <option value="">Bitte wählen</option>
+                  <option value="industrie">Industrie / Produktion</option>
+                  <option value="it">IT / Software</option>
+                  <option value="handwerk">Handwerk</option>
+                  <option value="energie">Energie / Klima</option>
+                  <option value="dienstleistung">Dienstleistung</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="mitarbeiterzahl">Mitarbeiterzahl</label>
+                <input id="mitarbeiterzahl" name="mitarbeiterzahl" type="number" min="1" step="1" placeholder="z. B. 84" required />
+              </div>
+
+              <div class="form-group">
+                <label for="jahresumsatz">Jahresumsatz in Mio. €</label>
+                <input id="jahresumsatz" name="jahresumsatz" type="number" min="0" step="0.1" placeholder="optional" />
+              </div>
+
+              <div class="form-group">
+                <label for="standortBundesland">Standort / Bundesland</label>
+                <select id="standortBundesland" name="standortBundesland" required>
+                  <option value="">Bitte wählen</option>
+                  <option value="BW">Baden-Württemberg</option>
+                  <option value="BY">Bayern</option>
+                  <option value="BE">Berlin</option>
+                  <option value="BB">Brandenburg</option>
+                  <option value="HB">Bremen</option>
+                  <option value="HH">Hamburg</option>
+                  <option value="HE">Hessen</option>
+                  <option value="MV">Mecklenburg-Vorpommern</option>
+                  <option value="NI">Niedersachsen</option>
+                  <option value="NW">Nordrhein-Westfalen</option>
+                  <option value="RP">Rheinland-Pfalz</option>
+                  <option value="SL">Saarland</option>
+                  <option value="SN">Sachsen</option>
+                  <option value="ST">Sachsen-Anhalt</option>
+                  <option value="SH">Schleswig-Holstein</option>
+                  <option value="TH">Thüringen</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="unternehmensalter">Unternehmensalter</label>
+                <select id="unternehmensalter" name="unternehmensalter">
+                  <option value="">Bitte wählen</option>
+                  <option value="startup">0–3 Jahre</option>
+                  <option value="scaleup">4–10 Jahre</option>
+                  <option value="established">11+ Jahre</option>
+                </select>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="projektKategorie">Projektkategorie</label>
+                <select id="projektKategorie" name="projektKategorie" required>
+                  <option value="">Bitte wählen</option>
+                  <option value="digitalisierung">Digitalisierung</option>
+                  <option value="energieeffizienz">Energieeffizienz</option>
+                  <option value="energiemanagement">Energiemanagement / MSR / Sensorik</option>
+                  <option value="prozessoptimierung">Prozessoptimierung / Dekarbonisierung</option>
+                  <option value="prozesswaerme">Prozesswärme aus Erneuerbaren</option>
+                  <option value="querschnittstechnologie">Querschnittstechnologien</option>
+                  <option value="anlagenaustausch">Anlagenaustausch</option>
+                  <option value="innovation">Innovation / FuE</option>
+                  <option value="robotik">Robotik / Zukunft der Wertschöpfung</option>
+                  <option value="innovationsberatung">Innovationsberatung</option>
+                  <option value="erweiterungsinvestition">Erweiterungsinvestition / Regionalförderung</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="projektStatus">Projektstatus</label>
+                <select id="projektStatus" name="projektStatus" required>
+                  <option value="planned">Geplant/ Noch nicht begonnen</option>
+                  <option value="started">Bereits begonnen</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="deMinimis">De-minimis Status</label>
+                <select id="deMinimis" name="deMinimis">
+                  <option value="unknown">Unklar / noch offen</option>
+                  <option value="ok">OK</option>
+                  <option value="exceeded">Überschritten / problematisch</option>
+                </select>
+              </div>
+
+              <div class="form-group form-group--checkboxes form-group--full">
+                <span class="group-label">Projekt- und Förderlogik</span>
+                <label><input type="checkbox" id="isRandD" name="isRandD" /> FuE-/Innovationsvorhaben</label>
+                <label><input type="checkbox" id="hasTechnicalRisk" name="hasTechnicalRisk" /> Technisches Risiko / Neuheitsgrad vorhanden</label>
+                <label><input type="checkbox" id="needsGuarantee" name="needsGuarantee" /> Haftungsfreistellung / Risikoübernahme relevant</label>
+                <label><input type="checkbox" id="hasPrimaryEffect" name="hasPrimaryEffect" /> Primäreffekt / überregionale Wirkung plausibel</label>
+                <label><input type="checkbox" id="inGrwArea" name="inGrwArea" /> Standort liegt im GRW-Fördergebiet</label>
+                <label><input type="checkbox" id="meetsInvestmentThreshold" name="meetsInvestmentThreshold" /> 10 %-Arbeitsplatz-/50 %-AfA-Kriterium plausibel</label>
+                <label><input type="checkbox" id="excludedSector" name="excludedSector" /> Ausschlusssektor möglich</label>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="queryText">Ranking-Query</label>
+                <textarea id="queryText" name="queryText" rows="3" placeholder="Wird automatisch aus den Eingaben erzeugt, kann aber manuell verfeinert werden."></textarea>
+              </div>
+
+              <div class="form-actions form-group--full">
+                <button class="button" type="submit">Förderprogramme analysieren</button>
+                <button id="resetBtn" class="button button--ghost" type="reset">Zurücksetzen</button>
+              </div>
+            </form>
+          </section>
+
+          <div class="results-column">
+            <section class="panel">
+              <div class="section-header">
+                <div>
+                  <h3>Ranking</h3>
+                </div>
+                <div class="toolbar">
+                    <select id="sortMode">
+                      <option value="effective_total_score">Gesamtranking</option>
+                      <option value="rule_score">Rule Score</option>
+                      <option value="semantic_score">Semantic Score</option>
+                    </select>
+                </div>
+              </div>
+
+              <div id="statusBanner" class="status-banner status-banner--neutral">
+                Noch keine Analyse gestartet.
+              </div>
+              <div id="loadingBox" class="loading-box hidden">Analyse läuft … Programme werden bewertet.</div>
+              <div id="resultsMeta" class="results-meta hidden"></div>
+              <div id="rankingList" class="ranking-list"></div>
+            </section>
+
+            <section id="detailSection" class="panel hidden">
+              <div class="section-header">
+                <div>
+                  <h3>Programm-Detailansicht</h3>
+                </div>
+                <button id="printBtn" class="button" type="button">PDF exportieren</button>
+              </div>
+              <div id="detailContent" class="report-layout"></div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <template id="scoreBarTemplate">
+      <div class="score-bar">
+        <div class="score-bar__label"></div>
+        <div class="score-bar__track"><span class="score-bar__fill"></span></div>
+        <div class="score-bar__value"></div>
+      </div>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

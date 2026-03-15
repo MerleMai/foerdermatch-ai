@@ -1,0 +1,6 @@
+{
+  "company": { "is_kmu": true, "country": "DE" },
+  "project": { "start_status": "planned", "is_r_and_d": false, "has_technical_risk": false },
+  "financing": { "needs_guarantee": false },
+  "constraints": { "de_minimis_status": "unknown" }
+}

@@ -1,0 +1,16 @@
+{
+  "company": {
+    "is_kmu": true,
+    "country": "DE",
+    "size_class": "small"
+  },
+  "project": {
+    "start_status": "planned",
+    "category": "innovationsberatung",
+    "is_r_and_d": false,
+    "has_technical_risk": true
+  },
+  "constraints": {
+    "de_minimis_status": "unknown"
+  }
+}

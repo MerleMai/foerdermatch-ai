@@ -1,0 +1,19 @@
+{
+  "company": {
+    "country": "DE",
+    "is_kmu": true,
+    "size_class": "kmu"
+  },
+  "project": {
+    "start_status": "planned",
+    "category": "anlagenaustausch",
+    "is_r_and_d": false,
+    "has_technical_risk": false
+  },
+  "constraints": {
+    "de_minimis_status": "unknown"
+  },
+  "financing": {
+    "needs_guarantee": false
+  }
+}
