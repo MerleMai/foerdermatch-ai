@@ -21,7 +21,7 @@ function escapeHtml(value) {
 }
 
 function getApiBase() {
-  return ($("apiBaseUrl")?.value || "http://127.0.0.1:8000")
+  return ($("apiBaseUrl")?.value || "https://foerdermatch-ai-openaiapikey.up.railway.app")
     .trim()
     .replace(/\/+$/, "");
 }
