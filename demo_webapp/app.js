@@ -21,9 +21,7 @@ function escapeHtml(value) {
 }
 
 function getApiBase() {
-  return ($("apiBaseUrl")?.value || "https://foerdermatch-ai-openaiapikey.up.railway.app")
-    .trim()
-    .replace(/\/+$/, "");
+  return "https://foerdermatch-ai-openaiapikey.up.railway.app";
 }
 
 function getEffectiveScore(item) {
