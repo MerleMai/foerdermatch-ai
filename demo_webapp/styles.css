@@ -132,20 +132,26 @@ button, input, select, textarea { font: inherit; }
 
 .hero-metrics {
   display: grid;
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
 }
 
 .metric-card {
-  background: var(--panel-soft);
-  border-radius: var(--radius-lg);
-  padding: 18px;
-  border: 1px solid var(--line);
+  background: #f5f7fb;
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+
+.metric-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
 }
 
 .metric-card strong {
   display: block;
-  margin-top: 8px;
-  font-size: 1.1rem;
+  margin-top: 6px;
+  font-size: 15px;
 }
 
 .workspace-grid {
