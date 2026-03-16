@@ -106,13 +106,28 @@ button, input, select, textarea { font: inherit; }
   grid-template-columns: 1.3fr 0.9fr;
   gap: 28px;
   margin-bottom: 24px;
+  align-items: stretch;
+}
+
+.hero > div:first-child {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hero-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 20px;
 }
 
 .hero h2 {
   font-size: 1.75rem;
   line-height: 1.2;
   margin: 10px 0 18px;
-  max-width: 18ch;
+  max-width: 20ch;
 }
 
 .hero p {
@@ -121,15 +136,6 @@ button, input, select, textarea { font: inherit; }
   line-height: 1.65;
   margin-bottom: 24px;
   font-size: 1rem;
-}
-
-.hero > div:first-child {
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-actions {
-  margin-top: auto;
 }
 
 .hero-metrics {
