@@ -131,10 +131,10 @@ button, input, select, textarea { font: inherit; }
 }
 
 .hero h2 {
-  font-size: 1.95rem;
+  font-size: 2rem;
   line-height: 1.12;
   margin: 10px 0 18px;
-  max-width: 14ch;
+  max-width: none;
 }
 
 .hero p {
@@ -147,14 +147,14 @@ button, input, select, textarea { font: inherit; }
 
 .hero-metrics {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
 .metric-card {
   background: #f5f7fb;
-  border-radius: 14px;
-  padding: 18px 20px;
+  border-radius: 16px;
+  padding: 16px 18px;
 }
 
 .metric-label {
@@ -550,15 +550,14 @@ small { color: var(--muted); }
   }
 
   .form-grid { grid-template-columns: 1fr; }
-  .score-bar { grid-template-columns: 1fr; gap: 8px; }
 
-  .hero {
-    min-height: auto;
+  .score-bar {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   .hero h2 {
-    font-size: 1.65rem;
-    max-width: 100%;
+    font-size: 1.7rem;
   }
 }
 
