@@ -7,10 +7,6 @@ load_dotenv()
 from backend.config import require_env
 require_env("OPENAI_API_KEY")
 
-import subprocess
-
-subprocess.run(["python", "-m", "scripts.demo_seed"], check=True)
-
 from fastapi.middleware.cors import CORSMiddleware
 
 from pathlib import Path

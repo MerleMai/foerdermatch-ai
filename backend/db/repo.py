@@ -75,9 +75,19 @@ def ensure_query_embeddings_schema(conn: sqlite3.Connection) -> None:
         """
     )
 
+def ensure_programs_schema(conn: sqlite3.Connection) -> None:
+    cols = _table_info(conn, "programs")
+
+    if "name_official" not in cols:
+        conn.execute("ALTER TABLE programs ADD COLUMN name_official TEXT;")
+
+    if "name_display" not in cols:
+        conn.execute("ALTER TABLE programs ADD COLUMN name_display TEXT;")
+
 
 def run_migrations(conn: sqlite3.Connection) -> None:
     ensure_query_embeddings_schema(conn)
+    ensure_programs_schema(conn)
 
 
 # ---------- Schema init ----------
