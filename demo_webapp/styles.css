@@ -313,8 +313,8 @@ small { color: var(--muted); }
   background: linear-gradient(180deg, #ffffff 0%, #f9fbfd 100%);
 }
 
+
 .result-card__header,
-.result-card__footer,
 .result-card__meta,
 .card-grid,
 .report-header {
@@ -328,6 +328,10 @@ small { color: var(--muted); }
 .detail-title {
   margin: 6px 0 0;
   font-size: 1.7rem;
+}
+
+.result-card__footer {
+  margin-top: 18px;
 }
 
 .rank-chip {
