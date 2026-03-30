@@ -253,19 +253,30 @@ function getSortedResults(results) {
 
 function formatMissingField(field) {
   const mapping = {
-    "constraints.de_minimis_status": "De-minimis-Status",
-    "project.start_status": "Projektstatus",
-    "company.is_kmu": "KMU-Status",
-    "company.size_class": "Unternehmensgröße",
-    "company.employee_count": "Mitarbeiterzahl",
-    "company.revenue_band": "Umsatzband",
-    "company.state": "Standort / Bundesland",
-    "project.category": "Projektkategorie",
-    "project.is_r_and_d": "FuE-Bezug",
-    "project.has_technical_risk": "Technisches Risiko",
-    "financing.needs_guarantee": "Haftungsfreistellung / Risikoübernahme",
+    "constraints.de_minimis_status":
+      "Es fehlt die Angabe, ob Ihr Unternehmen in den letzten 3 Jahren bereits De-minimis-Förderungen erhalten hat.",
+    "project.start_status":
+      "Es fehlt die Angabe, ob das Projekt bereits begonnen wurde.",
+    "company.is_kmu":
+      "Es fehlt die Angabe, ob Ihr Unternehmen als KMU gilt.",
+    "company.size_class":
+      "Es fehlt die Angabe zur Unternehmensgröße.",
+    "company.employee_count":
+      "Es fehlt die Mitarbeiterzahl.",
+    "company.revenue_band":
+      "Es fehlt eine Angabe zum Umsatz.",
+    "company.state":
+      "Es fehlt der Unternehmensstandort bzw. das Bundesland.",
+    "project.category":
+      "Es fehlt die Projektkategorie.",
+    "project.is_r_and_d":
+      "Es fehlt die Angabe, ob es sich um ein Forschungs- oder Entwicklungsvorhaben handelt.",
+    "project.has_technical_risk":
+      "Es fehlt die Angabe, ob technisches Risiko oder Neuheitsgrad vorliegt.",
+    "financing.needs_guarantee":
+      "Es fehlt die Angabe, ob eine Haftungsfreistellung bzw. Risikoübernahme relevant ist.",
   };
-  return mapping[field] || field;
+  return mapping[field] || `Es fehlt eine wichtige Angabe: ${field}`;
 }
 
 function buildWhyFits(item, profile = null) {
@@ -313,7 +324,7 @@ function buildWhyFits(item, profile = null) {
     !joined.includes("begonnen") &&
     !joined.includes("vorhaben")
   ) {
-    reasons.push("Das Vorhaben wurde laut Profil noch nicht begonnen.");
+    reasons.push("Das Projekt wurde laut Profil noch nicht begonnen.");
   }
 
   if (
@@ -321,7 +332,7 @@ function buildWhyFits(item, profile = null) {
     !joined.includes("fu") &&
     !joined.includes("f&e")
   ) {
-    reasons.push("Das Vorhaben weist laut Profil einen FuE-Bezug auf.");
+    reasons.push("Das Projekt ist laut Profil ein Forschungs- oder Innovationsvorhaben.");
   }
 
   if (
@@ -329,7 +340,7 @@ function buildWhyFits(item, profile = null) {
     !joined.includes("technisch") &&
     !joined.includes("risiko")
   ) {
-    reasons.push("Das Vorhaben enthält laut Profil technisches Risiko bzw. Neuheitsgrad.");
+    reasons.push("Das Projekt weist laut Profil technisches Risiko oder einen hohen Neuheitsgrad auf.");
   }
 
   if (profile?.company?.is_kmu === true && !joined.includes("kmu")) {
@@ -340,7 +351,7 @@ function buildWhyFits(item, profile = null) {
     if (score >= 70) {
       reasons.push("Die Gesamtbewertung fällt deutlich positiv aus.");
     } else if (score >= 40) {
-      reasons.push("Das Profil zeigt eine grundsätzliche Passung zum Programm.");
+      reasons.push("Das Profil passt grundsätzlich gut zu diesem Förderprogramm.");
     }
   }
 
@@ -367,7 +378,7 @@ function buildWhyFits(item, profile = null) {
   }
 
   if (!deduped.length) {
-    deduped.push("Die Bewertung zeigt eine grundsätzliche Passung zum Programm.");
+    deduped.push("Die Angaben sprechen insgesamt für eine grundsätzliche Passung zu diesem Förderprogramm.");
   }
 
   return deduped;
@@ -425,7 +436,7 @@ function renderRanking(results) {
         <div class="card-grid">
           <div style="display: grid; gap: 14px; width: 100%;">
             <div class="info-box">
-              <div class="meta-label">Warum es passt</div>
+              <div class="meta-label">Warum dieses Programm passt</div>
               <ul class="report-list">
                 ${whyFits.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}
               </ul>
@@ -435,7 +446,7 @@ function renderRanking(results) {
               blockers.length
                 ? `
                 <div class="info-box">
-                  <div class="meta-label">Blocker / offene Punkte</div>
+                  <div class="meta-label">Was noch geprüft oder ergänzt werden sollte</div>
                   <ul class="blocker-list">
                     ${blockers.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}
                   </ul>

@@ -532,6 +532,54 @@ small { color: var(--muted); }
   color: var(--muted);
 }
 
+.label-with-tooltip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tooltip-trigger {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--panel-soft);
+  border: 1px solid var(--line);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: help;
+}
+
+.tooltip-trigger::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%);
+  width: 320px;
+  max-width: min(320px, 80vw);
+  background: #10233f;
+  color: #fff;
+  padding: 12px 14px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease;
+  z-index: 20;
+}
+
+.tooltip-trigger:hover::after,
+.tooltip-trigger:focus::after {
+  opacity: 1;
+}
+
 .hidden { display: none !important; }
 
 @media (max-width: 1180px) {
