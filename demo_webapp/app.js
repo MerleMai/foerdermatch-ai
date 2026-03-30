@@ -53,6 +53,18 @@ function setButtonDisabled(id, disabled, loadingText = null, originalText = null
   }
 }
 
+function scrollToDetailSection() {
+  const detailSection = $("detailSection");
+  if (!detailSection) return;
+
+  setTimeout(() => {
+    detailSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, 80);
+}
+
 function getEffectiveScore(item) {
   return Number(item?.effective_total_score ?? item?.total_score ?? 0) || 0;
 }
@@ -730,7 +742,6 @@ function buildSummaryLines(summary) {
     .filter(Boolean);
 }
 
-
 function normalizePageRef(pageRef) {
   return String(pageRef || "")
     .replace(/^S\.\s*/i, "")
@@ -825,7 +836,6 @@ async function createReportPdfBlob(result) {
       addPage();
     }
   }
-
 
   function drawWrappedParagraph(text, opts = {}) {
     const {
@@ -1344,6 +1354,8 @@ async function loadDetail(programId, buttonEl = null) {
   detailContent.innerHTML =
     `<div class="loading-box">Programm-Detailansicht wird geladen …</div>`;
 
+  scrollToDetailSection();
+
   const payload = {
     program_id: programId,
     query_text: currentQueryText || $("queryText")?.value?.trim() || "",
@@ -1382,6 +1394,7 @@ async function loadDetail(programId, buttonEl = null) {
 
     detailContent.innerHTML = buildReportHtml(currentDetail);
     bannerState("Detailansicht erfolgreich geladen.", "success");
+    scrollToDetailSection();
   } catch (error) {
     console.error("loadDetail failed:", error);
     if (requestId !== detailRequestId) return;
@@ -1395,6 +1408,7 @@ async function loadDetail(programId, buttonEl = null) {
       `Detailansicht fehlgeschlagen: ${error.message || "Unbekannter Fehler"}`,
       "error"
     );
+    scrollToDetailSection();
   } finally {
     isDetailLoading = false;
 
