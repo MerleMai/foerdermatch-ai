@@ -364,8 +364,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M1",
         name="EEW BAFA Zuschuss Modul 1 Querschnittstechnologien",
-        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 1"
-        name_display="EEW – Modul 1 (Querschnittstechnologien)"
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 1",
+        name_display="EEW – Modul 1 (Querschnittstechnologien)",
         focus_area="Energieeffizienz / Querschnittstechnologien",
         variant="M1",
         notes="Nur BAFA-Zuschussvariante; Modul 1 richtet sich ausschließlich an KMU und fokussiert Austauschinvestitionen in hocheffiziente Querschnittstechnologien.",
@@ -378,8 +378,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M2",
         name="EEW BAFA Zuschuss Modul 2 Prozesswärme aus Erneuerbaren Energien",
-        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 2"
-        name_display="EEW – Modul 2 (Prozesswärme aus erneuerbaren Energien)"
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 2",
+        name_display="EEW – Modul 2 (Prozesswärme aus erneuerbaren Energien)",
         focus_area="Prozesswärme / Erneuerbare Energien",
         variant="M2",
         notes="Nur BAFA-Zuschussvariante; Modul 2 fördert Wärmeerzeuger für Prozesswärme aus erneuerbaren Energien.",
@@ -393,8 +393,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M3",
         name="EEW BAFA Zuschuss Modul 3 MSR, Sensorik und Energiemanagement-Software",
-        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 3"
-        name_display="EEW – Modul 3 (MSR, Sensorik und Energiemanagement-Software)"
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 3",
+        name_display="EEW – Modul 3 (MSR, Sensorik und Energiemanagement-Software)",
         focus_area="Energiemanagement / MSR / Sensorik",
         variant="M3",
         notes="Nur BAFA-Zuschussvariante; Modul 3 setzt auf gelistete Energiemanagementsoftware sowie mess-, steuer- und regelungstechnische Komponenten.",
@@ -408,8 +408,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M4-BASIS",
         name="EEW BAFA Zuschuss Modul 4 Basisförderung",
-        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 4"
-        name_display="EEW – Modul 4 Basis"
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 4",
+        name_display="EEW – Modul 4 Basis",
         focus_area="Energie- und Ressourceneffizienz / Anlagenaustausch",
         variant="M4-BASIS",
         notes="Nur BAFA-Zuschussvariante; Modul 4 Basisförderung ist auf KMU begrenzt und verlangt insbesondere 15 % Endenergieeinsparung beim Austausch definierter Anlagenkategorien.",
@@ -423,8 +423,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M4-PREMIUM",
         name="EEW BAFA Zuschuss Modul 4 Premiumförderung",
-        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 4"
-        name_display="EEW – Modul 4 Premium"
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 4",
+        name_display="EEW – Modul 4 Premium",
         focus_area="Energie- und Ressourceneffizienz / technologieoffene Prozessoptimierung",
         variant="M4-PREMIUM",
         notes="Nur BAFA-Zuschussvariante; Modul 4 Premiumförderung ist technologieoffen, verlangt ein Einsparkonzept und ein Mindest-THG-Einsparpotenzial.",
@@ -442,8 +442,8 @@ def main():
         DB,
         program_id="GRW-MV-GEWERBE",
         name="GRW Mecklenburg-Vorpommern Gewerbliche Wirtschaft",
-        name_official="Gemeinschaftsaufgabe Verbesserung der regionalen Wirtschaftsstruktur"
-        name_display="GRW – Gewerbliche Wirtschaft Mecklenburg-Vorpommern"
+        name_official="Gemeinschaftsaufgabe Verbesserung der regionalen Wirtschaftsstruktur",
+        name_display="GRW – Gewerbliche Wirtschaft Mecklenburg-Vorpommern",
         provider="Bund / Land Mecklenburg-Vorpommern",
         funding_type="Zuschuss",
         focus_area="Regionalförderung / gewerbliche Investitionen",
