@@ -231,23 +231,24 @@ def _normalize_summary_bullet(bucket: str, sentence: str) -> str:
     s = _clean_display_text(sentence).rstrip(".")
 
     if len(s) > 120:
-        cut = s[:120].rsplit(" ", 1)[0].strip()
-        s = cut if cut else s[:120].strip()
+        s = s[:120].rsplit(" ", 1)[0].strip()
 
     label_map = {
         "förderart": "Förderart",
-        "zielgruppe": "Zielgruppe",
-        "förderfähig": "Förderfähig",
-        "antragstellung": "Antragstellung",
-        "besonderheit": "Besonderheit",
+        "zielgruppe": "Für wen geeignet",
+        "förderfähig": "Was wird gefördert",
+        "antragstellung": "Wichtige Voraussetzung",
+        "besonderheit": "Worauf besonders zu achten ist",
     }
 
     label = label_map[bucket]
 
-    if ":" in s:
-        left, right = s.split(":", 1)
-        if left.strip().lower() in [x.lower() for x in label_map.values()]:
-            s = right.strip()
+    if bucket == "antragstellung":
+        s = f"Der Antrag muss gestellt werden, bevor das Projekt beginnt ({s})"
+    elif bucket == "zielgruppe":
+        s = f"Relevant für: {s}"
+    elif bucket == "besonderheit":
+        s = f"Besonders wichtig: {s}"
 
     return f"- {label}: {s}"
 
