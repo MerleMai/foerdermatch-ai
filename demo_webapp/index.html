@@ -4,11 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FörderMatch AI – Demo Web App</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="./vendor/pdf-lib.min.js"></script>
   </head>
   <body>
     <div class="app-shell">
@@ -21,7 +18,9 @@
           </div>
         </div>
         <div class="topbar-actions">
-          <span id="apiStatus" class="api-pill api-pill--idle">API nicht geprüft</span>
+          <span id="apiStatus" class="api-pill api-pill--idle" role="status" aria-live="polite">
+            API nicht geprüft
+          </span>
           <button id="healthBtn" class="button button--ghost" type="button">API prüfen</button>
         </div>
       </header>
@@ -150,6 +149,14 @@
               </div>
 
               <div class="form-group">
+                <label for="projektStatus">Projektstatus</label>
+                <select id="projektStatus" name="projektStatus">
+                  <option value="planned">Noch nicht begonnen</option>
+                  <option value="started">Bereits begonnen</option>
+                </select>
+              </div>
+
+              <div class="form-group">
                 <label for="deMinimis" class="label-with-tooltip">
                   <span>De-minimis-Status</span>
                   <span
@@ -189,7 +196,7 @@
               </div>
 
               <div class="form-actions form-group--full">
-                <button class="button" type="submit">Förderprogramme analysieren</button>
+                <button id="analyzeBtn" class="button" type="submit">Förderprogramme analysieren</button>
                 <button id="resetBtn" class="button button--ghost" type="reset">Zurücksetzen</button>
               </div>
             </form>
@@ -210,7 +217,7 @@
                 </div>
               </div>
 
-              <div id="statusBanner" class="status-banner status-banner--neutral">
+              <div id="statusBanner" class="status-banner status-banner--neutral" role="status" aria-live="polite">
                 Noch keine Analyse gestartet.
               </div>
               <div id="loadingBox" class="loading-box hidden">Analyse läuft … Programme werden bewertet.</div>

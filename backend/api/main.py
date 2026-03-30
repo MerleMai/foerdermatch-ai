@@ -580,7 +580,16 @@ def open_document_file(document_id: int):
 
 @app.exception_handler(Exception)
 async def all_exception_handler(request: Request, exc: Exception):
-    return JSONResponse(status_code=500, content={"error": type(exc).__name__, "detail": str(exc)})
+    if isinstance(exc, HTTPException):
+        return JSONResponse(
+            status_code=exc.status_code,
+            content={"detail": exc.detail},
+        )
+
+    return JSONResponse(
+        status_code=500,
+        content={"error": type(exc).__name__, "detail": str(exc)},
+    )
 
 
 @app.post("/evaluate")
@@ -627,8 +636,10 @@ def rank(req: RankRequest, request: Request) -> RankResponse:
     include_n = _clamp_int(req.include_detail_top_n, 0, 5)
 
     all_ids = fetch_all_program_ids(DB)
+    all_ids_set = set(all_ids)
+
     if req.program_ids:
-        unknown = [p for p in req.program_ids if p not in set(all_ids)]
+        unknown = [p for p in req.program_ids if p not in all_ids_set]
         if unknown:
             raise HTTPException(status_code=404, detail=f"Unknown program_id(s): {unknown}")
         program_ids = req.program_ids
@@ -649,11 +660,16 @@ def rank(req: RankRequest, request: Request) -> RankResponse:
             )
         )
 
-    def _sort_key(x: dict[str, Any]) -> tuple[int, int, str]:
+    def _sort_key(x: dict[str, Any]) -> tuple[int, int, int, str]:
         hf = 1 if bool(x.get("hard_fail")) else 0
-        eff = int(x.get("effective_total_score") if x.get("effective_total_score") is not None else (x.get("total_score") or 0))
+        eff = int(
+            x.get("effective_total_score")
+            if x.get("effective_total_score") is not None
+            else (x.get("total_score") or 0)
+        )
+        total = int(x.get("total_score") or 0)
         pid = str(x.get("program_id") or "")
-        return (hf, -eff, pid)
+        return (hf, -eff, -total, pid)
 
     scored_items.sort(key=_sort_key)
 

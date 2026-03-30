@@ -3,6 +3,13 @@ let currentDetail = null;
 let currentProfile = null;
 let currentQueryText = "";
 
+let isRankingLoading = false;
+let isDetailLoading = false;
+let isPdfLoading = false;
+
+let rankRequestId = 0;
+let detailRequestId = 0;
+
 function $(id) {
   return document.getElementById(id);
 }
@@ -21,7 +28,29 @@ function escapeHtml(value) {
 }
 
 function getApiBase() {
+  const urlParam = new URLSearchParams(window.location.search).get("apiBaseUrl");
+  if (urlParam) return urlParam.replace(/\/+$/, "");
+
+  const stored = localStorage.getItem("apiBaseUrl");
+  if (stored) return stored.replace(/\/+$/, "");
+
   return "https://foerdermatch-ai-backend.up.railway.app";
+}
+
+function setButtonDisabled(id, disabled, loadingText = null, originalText = null) {
+  const el = $(id);
+  if (!el) return;
+  el.disabled = disabled;
+
+  if (disabled && loadingText) {
+    if (!el.dataset.originalText) {
+      el.dataset.originalText = originalText || el.textContent;
+    }
+    el.textContent = loadingText;
+  } else if (!disabled && el.dataset.originalText) {
+    el.textContent = el.dataset.originalText;
+    delete el.dataset.originalText;
+  }
 }
 
 function getEffectiveScore(item) {
@@ -245,7 +274,13 @@ function getSortedResults(results) {
       return bValue - aValue;
     }
 
-    return getEffectiveScore(b) - getEffectiveScore(a);
+    const fallbackDiff = getEffectiveScore(b) - getEffectiveScore(a);
+    if (fallbackDiff !== 0) return fallbackDiff;
+
+    return String(a?.program_id || "").localeCompare(
+      String(b?.program_id || ""),
+      "de"
+    );
   });
 
   return sorted;
@@ -458,9 +493,14 @@ function renderRanking(results) {
         </div>
 
         <div class="result-card__footer">
-          <button class="button button--ghost button--small" type="button" onclick="loadDetail('${escapeHtml(item.program_id)}')">
-            Details
-          </button>
+          <button
+          class="button button--ghost button--small"
+          type="button"
+          onclick="loadDetail('${escapeHtml(item.program_id)}', this)"
+          aria-label="Details zu ${escapeHtml(item.program_name || item.program_id || "diesem Förderprogramm")} anzeigen"
+        >
+          Details
+        </button>
         </div>
       </article>
     `;
@@ -1129,6 +1169,8 @@ async function createReportPdfBlob(result) {
 }
 
 async function downloadCurrentReportPdf() {
+  if (isPdfLoading) return;
+
   if (!currentDetail) {
     if (currentResults.length) {
       bannerState(
@@ -1141,9 +1183,13 @@ async function downloadCurrentReportPdf() {
     return;
   }
 
+  isPdfLoading = true;
+  setButtonDisabled("printBtn", true, "PDF wird erstellt …");
+
   try {
     const blob = await createReportPdfBlob(currentDetail);
     const url = URL.createObjectURL(blob);
+
     const fileBase = sanitizeFilename(
       currentDetail?.program_id || "FoerderMatch_Report"
     );
@@ -1163,45 +1209,58 @@ async function downloadCurrentReportPdf() {
       `PDF-Export fehlgeschlagen: ${error.message || "Unbekannter Fehler"}`,
       "error"
     );
+  } finally {
+    isPdfLoading = false;
+    setButtonDisabled("printBtn", false);
   }
 }
 
 async function runRanking(event) {
   event?.preventDefault();
 
+  if (isRankingLoading) return;
+  isRankingLoading = true;
+  const requestId = ++rankRequestId;
+  setButtonDisabled("analyzeBtn", true, "Analyse läuft …");
+
   const rankingList = $("rankingList");
   const resultsMeta = $("resultsMeta");
   const detailSection = $("detailSection");
   const detailContent = $("detailContent");
 
-  currentDetail = null;
-
-  if (rankingList) rankingList.innerHTML = "";
-  if (resultsMeta) resultsMeta.classList.add("hidden");
-  if (detailSection) detailSection.classList.add("hidden");
-  if (detailContent) detailContent.innerHTML = "";
-
-  currentProfile = buildProfileFromForm();
-
-  const queryField = $("queryText");
-  const autoQuery = buildAutoQuery(currentProfile);
-  if (queryField && !queryField.value.trim()) {
-    queryField.value = autoQuery;
-  }
-  currentQueryText = queryField?.value?.trim() || autoQuery;
-
-  bannerState("Analyse läuft … Programme werden bewertet.", "neutral");
-  showLoading(true);
-
-  const payload = {
-    query_text: currentQueryText,
-    profile: currentProfile,
-    retrieval_k: 5,
-    limit: 10,
-    include_detail_top_n: 0,
-  };
-
   try {
+    currentDetail = null;
+
+    if (rankingList) rankingList.innerHTML = "";
+    if (resultsMeta) {
+      resultsMeta.textContent = "";
+      resultsMeta.classList.add("hidden");
+    }
+    if (detailSection) detailSection.classList.add("hidden");
+    if (detailContent) detailContent.innerHTML = "";
+
+    currentProfile = buildProfileFromForm();
+
+    const queryField = $("queryText");
+    const autoQuery = buildAutoQuery(currentProfile);
+
+    if (queryField && !queryField.value.trim()) {
+      queryField.value = autoQuery;
+    }
+
+    currentQueryText = queryField?.value?.trim() || autoQuery;
+
+    bannerState("Analyse läuft … Programme werden bewertet.", "neutral");
+    showLoading(true);
+
+    const payload = {
+      query_text: currentQueryText,
+      profile: currentProfile,
+      retrieval_k: 5,
+      limit: 10,
+      include_detail_top_n: 0,
+    };
+
     const response = await fetch(`${getApiBase()}/rank`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -1219,14 +1278,16 @@ async function runRanking(event) {
       throw new Error(data?.detail || data?.error || `HTTP ${response.status}`);
     }
 
+    if (requestId !== rankRequestId) return;
     currentResults = safeArray(data?.results);
     renderRanking(currentResults);
 
     if (resultsMeta) {
+      const sortMode = getCurrentSortMode();
       const sortText =
-        getCurrentSortMode() === "rule_score"
+        sortMode === "rule_score"
           ? "Rule Score"
-          : getCurrentSortMode() === "semantic_score"
+          : sortMode === "semantic_score"
           ? "Semantic Score"
           : "Gesamtranking";
 
@@ -1237,10 +1298,14 @@ async function runRanking(event) {
     bannerState("Ranking erfolgreich erzeugt.", "success");
   } catch (error) {
     console.error("runRanking failed:", error);
+    if (requestId !== rankRequestId) return;
     bannerState(
       `Analyse fehlgeschlagen: ${error.message || "Unbekannter Fehler"}`,
       "error"
     );
+
+    currentResults = [];
+
     if (rankingList) {
       rankingList.innerHTML = `
         <div class="error-box">
@@ -1251,13 +1316,29 @@ async function runRanking(event) {
     }
   } finally {
     showLoading(false);
+    isRankingLoading = false;
+    setButtonDisabled("analyzeBtn", false);
   }
 }
 
-async function loadDetail(programId) {
+async function loadDetail(programId, buttonEl = null) {
+  if (isDetailLoading) return;
+
   const detailSection = $("detailSection");
   const detailContent = $("detailContent");
+
   if (!detailSection || !detailContent) return;
+
+  isDetailLoading = true;
+  const requestId = ++detailRequestId;
+
+  if (buttonEl) {
+    buttonEl.disabled = true;
+    if (!buttonEl.dataset.originalText) {
+      buttonEl.dataset.originalText = buttonEl.textContent;
+    }
+    buttonEl.textContent = "Lädt …";
+  }
 
   detailSection.classList.remove("hidden");
   detailContent.innerHTML =
@@ -1265,7 +1346,7 @@ async function loadDetail(programId) {
 
   const payload = {
     program_id: programId,
-    query_text: currentQueryText || $("queryText")?.value || "",
+    query_text: currentQueryText || $("queryText")?.value?.trim() || "",
     profile: currentProfile || buildProfileFromForm(),
     retrieval_k: 5,
   };
@@ -1288,18 +1369,40 @@ async function loadDetail(programId) {
       throw new Error(data?.detail || data?.error || `HTTP ${response.status}`);
     }
 
-    currentDetail = data;
-    detailContent.innerHTML = buildReportHtml(data);
-    detailSection.classList.remove("hidden");
-    detailSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    const matched =
+      safeArray(currentResults).find((x) => String(x?.program_id) === String(programId)) || {};
+
+    if (requestId !== detailRequestId) return;
+
+    currentDetail = {
+      ...matched,
+      ...data,
+      detail: data?.detail || matched?.detail || null,
+    };
+
+    detailContent.innerHTML = buildReportHtml(currentDetail);
+    bannerState("Detailansicht erfolgreich geladen.", "success");
   } catch (error) {
     console.error("loadDetail failed:", error);
+    if (requestId !== detailRequestId) return;
     detailContent.innerHTML = `
       <div class="error-box">
         <strong>Detailansicht konnte nicht geladen werden.</strong>
         <div>${escapeHtml(error.message || "Unbekannter Fehler")}</div>
       </div>
     `;
+    bannerState(
+      `Detailansicht fehlgeschlagen: ${error.message || "Unbekannter Fehler"}`,
+      "error"
+    );
+  } finally {
+    isDetailLoading = false;
+
+    if (buttonEl) {
+      buttonEl.disabled = false;
+      buttonEl.textContent = buttonEl.dataset.originalText || "Details";
+      delete buttonEl.dataset.originalText;
+    }
   }
 }
 
@@ -1353,12 +1456,25 @@ function resetUiState() {
   currentProfile = null;
   currentQueryText = "";
 
-  bannerState("Noch keine Analyse gestartet.", "neutral");
-  $("rankingList").innerHTML = "";
-  $("resultsMeta")?.classList.add("hidden");
-  $("detailSection")?.classList.add("hidden");
+  isRankingLoading = false;
+  isDetailLoading = false;
+  isPdfLoading = false;
 
+  bannerState("Noch keine Analyse gestartet.", "neutral");
+  showLoading(false);
+
+  if ($("rankingList")) $("rankingList").innerHTML = "";
+  if ($("resultsMeta")) {
+    $("resultsMeta").textContent = "";
+    $("resultsMeta").classList.add("hidden");
+  }
+  if ($("detailSection")) $("detailSection").classList.add("hidden");
   if ($("detailContent")) $("detailContent").innerHTML = "";
+
+  setButtonDisabled("analyzeBtn", false);
+  setButtonDisabled("printBtn", false);
+  rankRequestId++;
+  detailRequestId++;
 }
 
 document.addEventListener("DOMContentLoaded", () => {

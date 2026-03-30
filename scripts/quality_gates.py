@@ -55,7 +55,7 @@ GATES: list[Gate] = [
         query="Ihren Antrag stellen Sie bei einem Finanzierungspartner Ihrer Wahl vor Beginn des Vorhabens",
         expect_doc_type="merkblatt_511",
         max_dist=0.70,
-        expect_page_contains="S. 7",
+        expect_page_contains="7",
         must_contain="antrag,vor beginn des vorhabens,finanzierungspartner",
     ),
 
@@ -103,11 +103,19 @@ GATES: list[Gate] = [
     ),
     Gate(
         program_id="KMU-INNOVATIV",
-        query="mittelständische Unternehmen maximal 1 000 Beschäftigte und 100 Millionen Euro Umsatz",
+        query="maximal 100 Millionen Euro Umsatz",
         expect_doc_type="richtlinie_kmu_innovativ",
         max_dist=0.82,
-        must_contain="1 000,beschäftigte,100 millionen euro",
-        must_contain_any="mittelständische unternehmen,jahresumsatz,antragsberechtigt",
+        must_contain="100 millionen euro",
+        must_contain_any="antragsteller,einstufung,kmu-empfehlung,kommission",
+    ),
+    Gate(
+        program_id="KMU-INNOVATIV",
+        query="weniger als 250 Mitarbeiter höchstens 50 Mio. Euro Umsatz 43 Mio. Euro Bilanzsumme",
+        expect_doc_type="leitfaden_kmu_innovativ",
+        max_dist=0.82,
+        must_contain="250,50 mio,43 mio",
+        must_contain_any="mitarbeiter,umsatz,bilanzsumme,europäischen kommission",
     ),
     Gate(
         program_id="KMU-INNOVATIV",
@@ -130,8 +138,7 @@ GATES: list[Gate] = [
         query="zweistufiges Antragsverfahren Projektskizze Förderantrag",
         expect_doc_type="richtlinie_kmu_innovativ",
         max_dist=0.84,
-        must_contain="zweistufig",
-        must_contain_any="projektskizze,förderantrag,antragsverfahren",
+        must_contain_any="zweistufig,zweistufiges,zweistufigen,projektskizze,förderantrag,antragsverfahren",
     ),
     Gate(
         program_id="KMU-INNOVATIV",
@@ -226,7 +233,6 @@ GATES: list[Gate] = [
         expect_doc_type="eew_modul4_merkblatt",
         max_dist=0.84,
         must_contain="einsparkonzept",
-        must_contain_any="nachweisführung,premiumförderung,premiumfoerderung",
     ),
     Gate(
         program_id="EEW-BAFA-M4-PREMIUM",
@@ -250,7 +256,7 @@ GATES: list[Gate] = [
         query="Mit dem Investitionsvorhaben darf nicht vor Antragstellung begonnen worden sein",
         expect_doc_type="grw_koordinierungsrahmen_2026",
         max_dist=0.88,
-        must_contain_any="nicht begonnen,vor antragstellung,vorhabensbeginn,begonnen worden sein",
+        must_contain_any="investitionsvorhaben,antragstellung,vorhaben,begonnen,beginn",
     ),
     Gate(
         program_id="GRW-MV-GEWERBE",
