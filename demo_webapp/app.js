@@ -397,7 +397,8 @@ function renderRanking(results) {
         <div class="result-card__header">
           <div>
             <span class="${meta.badgeClass}">${meta.icon} ${escapeHtml(meta.label)}</span>
-            <h4>${escapeHtml(item.program_id || "Förderprogramm")}</h4>
+            <h4>${escapeHtml(item.program_name || item.program_id || "Förderprogramm")}</h4>
+            <div class="program-subtitle">${escapeHtml(item.program_name_official || item.program_id || "")}</div>
           </div>
           <div class="rank-chip">${idx + 1}</div>
         </div>
@@ -509,7 +510,8 @@ function buildReportHtml(result) {
       <div class="report-header">
         <div>
           <span class="${meta.badgeClass}">${meta.icon} ${escapeHtml(meta.label)}</span>
-          <h4>${escapeHtml(result.program_id || "Programm")}</h4>
+          <h4>${escapeHtml(result.program_name || result.program_id || "Programm")}</h4>
+          <div class="program-subtitle">${escapeHtml(result.program_name_official || result.program_id || "")}</div>
         </div>
         <div class="kpi-group">
           <div class="kpi">

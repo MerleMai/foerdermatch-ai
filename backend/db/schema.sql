@@ -6,6 +6,8 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS programs (
   id                  TEXT PRIMARY KEY,
   name                TEXT NOT NULL,
+  name_official       TEXT,
+  name_display        TEXT,
   provider            TEXT NOT NULL,
   funding_type        TEXT NOT NULL,
   focus_area          TEXT,

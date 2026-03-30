@@ -98,6 +98,8 @@ def upsert_program(
     *,
     program_id: str,
     name: str,
+    name_official: Optional[str] = None,
+    name_display: Optional[str] = None,
     provider: str,
     funding_type: str,
     focus_area: Optional[str] = None,
@@ -110,28 +112,32 @@ def upsert_program(
     now = utcnow_sql()
     sql = """
     INSERT INTO programs (
-        id, name, provider, funding_type, focus_area, geography, variant,
+        id, name, name_official, name_display, provider, funding_type, focus_area, geography, variant,
         source_url, status, notes, created_at, updated_at
     ) VALUES (
-        :id, :name, :provider, :funding_type, :focus_area, :geography, :variant,
+        :id, :name, :name_official, :name_display, :provider, :funding_type, :focus_area, :geography, :variant,
         :source_url, :status, :notes, :created_at, :updated_at
     )
     ON CONFLICT(id) DO UPDATE SET
-        name         = excluded.name,
-        provider     = excluded.provider,
-        funding_type = excluded.funding_type,
-        focus_area   = excluded.focus_area,
-        geography    = excluded.geography,
-        variant      = excluded.variant,
-        source_url   = excluded.source_url,
-        status       = excluded.status,
-        notes        = excluded.notes,
-        updated_at   = excluded.updated_at;
+        name          = excluded.name,
+        name_official = excluded.name_official,
+        name_display  = excluded.name_display,
+        provider      = excluded.provider,
+        funding_type  = excluded.funding_type,
+        focus_area    = excluded.focus_area,
+        geography     = excluded.geography,
+        variant       = excluded.variant,
+        source_url    = excluded.source_url,
+        status        = excluded.status,
+        notes         = excluded.notes,
+        updated_at    = excluded.updated_at;
     """
 
     params = {
         "id": program_id,
         "name": name,
+        "name_official": name_official,
+        "name_display": name_display,
         "provider": provider,
         "funding_type": funding_type,
         "focus_area": focus_area,

@@ -7,6 +7,10 @@ load_dotenv()
 from backend.config import require_env
 require_env("OPENAI_API_KEY")
 
+import subprocess
+
+subprocess.run(["python", "-m", "scripts.demo_seed"], check=True)
+
 from fastapi.middleware.cors import CORSMiddleware
 
 from pathlib import Path
@@ -116,6 +120,8 @@ class HardFailExplain(BaseModel):
 
 class ProgramResult(BaseModel):
     program_id: str
+    program_name: Optional[str] = None
+    program_name_official: Optional[str] = None
     total_score: int
     effective_total_score: int
     rule_score: int
@@ -166,6 +172,29 @@ def _ensure_program_exists(program_id: str) -> None:
     all_ids = set(fetch_all_program_ids(DB))
     if program_id not in all_ids:
         raise HTTPException(status_code=404, detail=f"Unknown program_id: {program_id}")
+
+
+def _fetch_program_names(program_id: str) -> dict[str, Optional[str]]:
+    with connect(DB) as conn:
+        row = conn.execute(
+            """
+            SELECT name, name_official, name_display
+            FROM programs
+            WHERE id = ?
+            """,
+            (program_id,),
+        ).fetchone()
+
+    if not row:
+        return {
+            "program_name": program_id,
+            "program_name_official": program_id,
+        }
+
+    return {
+        "program_name": row["name_display"] or row["name"] or program_id,
+        "program_name_official": row["name_official"] or row["name"] or program_id,
+    }
 
 
 def _status_and_badge(*, hard_fail: bool, missing_fields: list[str]) -> tuple[ProgramStatus, str]:
@@ -443,6 +472,8 @@ def _to_detail_payload_from_rag(item: Any, *, request: Request) -> DetailPayload
 
 
 def _program_result_from_scored(scored: dict[str, Any], *, detail: Optional[DetailPayload]) -> ProgramResult:
+    program_id = str(scored.get("program_id") or "")
+    name_meta = _fetch_program_names(program_id)
     hard_fail = bool(scored.get("hard_fail"))
     missing_fields = list(scored.get("missing_fields") or [])
     rules = list(scored.get("rules") or [])
@@ -468,9 +499,15 @@ def _program_result_from_scored(scored: dict[str, Any], *, detail: Optional[Deta
         deduped = _default_next_actions_for_program(str(scored.get("program_id") or ""))
 
     return ProgramResult(
-        program_id=str(scored.get("program_id") or ""),
+        program_id=program_id,
+        program_name=name_meta["program_name"],
+        program_name_official=name_meta["program_name_official"],
         total_score=int(scored.get("total_score") or 0),
-        effective_total_score=int(scored.get("effective_total_score") if scored.get("effective_total_score") is not None else (scored.get("total_score") or 0)),
+        effective_total_score=int(
+            scored.get("effective_total_score")
+            if scored.get("effective_total_score") is not None
+            else (scored.get("total_score") or 0)
+        ),
         rule_score=int(scored.get("rule_score") or 0),
         semantic_score=int(scored.get("semantic_score") or 0),
         hard_fail=hard_fail,

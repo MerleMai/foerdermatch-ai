@@ -65,6 +65,8 @@ def _insert_eew_program(
     *,
     program_id: str,
     name: str,
+    name_official: str,
+    name_display: str,
     focus_area: str,
     variant: str,
     notes: str,
@@ -79,6 +81,8 @@ def _insert_eew_program(
         DB,
         program_id=program_id,
         name=name,
+        name_official=name_official,
+        name_display=name_display,
         provider="BAFA / BMWE",
         funding_type="Zuschuss",
         focus_area=focus_area,
@@ -134,6 +138,8 @@ def main():
         DB,
         program_id="KFW-ERP-DIGI-511",
         name="ERP-Förderkredit Digitalisierung",
+        name_official="ERP-Förderkredit Digitalisierung",
+        name_display="ERP-Förderkredit Digitalisierung (Standard)",
         provider="KfW",
         funding_type="Darlehen",
         focus_area="Digitalisierung & Innovation",
@@ -210,6 +216,8 @@ def main():
         DB,
         program_id="KFW-ERP-DIGI-512",
         name="ERP-Förderkredit Digitalisierung (mit Haftungsfreistellung)",
+        name_official="ERP-Förderkredit Digitalisierung",
+        name_display="ERP-Förderkredit Digitalisierung (mit Haftungsfreistellung)",
         provider="KfW",
         funding_type="Darlehen",
         focus_area="Digitalisierung & Innovation",
@@ -237,6 +245,8 @@ def main():
         DB,
         program_id="ZIM",
         name="Zentrales Innovationsprogramm Mittelstand (ZIM)",
+        name_official="Zentrales Innovationsprogramm Mittelstand (ZIM)",
+        name_display="Zentrales Innovationsprogramm Mittelstand (ZIM)",
         provider="BMWK/BMWE",
         funding_type="Zuschuss",
         focus_area="Forschung & Entwicklung / Innovation",
@@ -283,6 +293,8 @@ def main():
         DB,
         program_id="KMU-INNOVATIV",
         name="KMU-innovativ: Zukunft der Wertschöpfung",
+        name_official="KMU-innovativ: Zukunft der Wertschöpfung",
+        name_display="KMU-innovativ: Zukunft der Wertschöpfung",
         provider="BMBF",
         funding_type="Zuschuss",
         focus_area="Forschung & Entwicklung / Zukunft der Wertschöpfung",
@@ -352,6 +364,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M1",
         name="EEW BAFA Zuschuss Modul 1 Querschnittstechnologien",
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 1"
+        name_display="EEW – Modul 1 (Querschnittstechnologien)"
         focus_area="Energieeffizienz / Querschnittstechnologien",
         variant="M1",
         notes="Nur BAFA-Zuschussvariante; Modul 1 richtet sich ausschließlich an KMU und fokussiert Austauschinvestitionen in hocheffiziente Querschnittstechnologien.",
@@ -364,6 +378,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M2",
         name="EEW BAFA Zuschuss Modul 2 Prozesswärme aus Erneuerbaren Energien",
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 2"
+        name_display="EEW – Modul 2 (Prozesswärme aus erneuerbaren Energien)"
         focus_area="Prozesswärme / Erneuerbare Energien",
         variant="M2",
         notes="Nur BAFA-Zuschussvariante; Modul 2 fördert Wärmeerzeuger für Prozesswärme aus erneuerbaren Energien.",
@@ -377,6 +393,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M3",
         name="EEW BAFA Zuschuss Modul 3 MSR, Sensorik und Energiemanagement-Software",
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 3"
+        name_display="EEW – Modul 3 (MSR, Sensorik und Energiemanagement-Software)"
         focus_area="Energiemanagement / MSR / Sensorik",
         variant="M3",
         notes="Nur BAFA-Zuschussvariante; Modul 3 setzt auf gelistete Energiemanagementsoftware sowie mess-, steuer- und regelungstechnische Komponenten.",
@@ -390,6 +408,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M4-BASIS",
         name="EEW BAFA Zuschuss Modul 4 Basisförderung",
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 4"
+        name_display="EEW – Modul 4 Basis"
         focus_area="Energie- und Ressourceneffizienz / Anlagenaustausch",
         variant="M4-BASIS",
         notes="Nur BAFA-Zuschussvariante; Modul 4 Basisförderung ist auf KMU begrenzt und verlangt insbesondere 15 % Endenergieeinsparung beim Austausch definierter Anlagenkategorien.",
@@ -403,6 +423,8 @@ def main():
     _insert_eew_program(
         program_id="EEW-BAFA-M4-PREMIUM",
         name="EEW BAFA Zuschuss Modul 4 Premiumförderung",
+        name_official="Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 4"
+        name_display="EEW – Modul 4 Premium"
         focus_area="Energie- und Ressourceneffizienz / technologieoffene Prozessoptimierung",
         variant="M4-PREMIUM",
         notes="Nur BAFA-Zuschussvariante; Modul 4 Premiumförderung ist technologieoffen, verlangt ein Einsparkonzept und ein Mindest-THG-Einsparpotenzial.",
@@ -420,6 +442,8 @@ def main():
         DB,
         program_id="GRW-MV-GEWERBE",
         name="GRW Mecklenburg-Vorpommern Gewerbliche Wirtschaft",
+        name_official="Gemeinschaftsaufgabe Verbesserung der regionalen Wirtschaftsstruktur"
+        name_display="GRW – Gewerbliche Wirtschaft Mecklenburg-Vorpommern"
         provider="Bund / Land Mecklenburg-Vorpommern",
         funding_type="Zuschuss",
         focus_area="Regionalförderung / gewerbliche Investitionen",
@@ -497,6 +521,8 @@ def main():
         DB,
         program_id="GO-INNO",
         name="BMWK/INNO Innovationsgutscheine go-inno",
+        name_official="go-inno",
+        name_display="go-inno – Innovationsgutscheine",
         provider="BMWE / EURONORM",
         funding_type="Zuschuss",
         focus_area="Innovationsberatung / Produkt- und Verfahrensinnovation",
