@@ -200,6 +200,12 @@ button, input, select, textarea { font: inherit; }
   gap: 16px;
 }
 
+.form-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
