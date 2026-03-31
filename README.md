@@ -1,88 +1,178 @@
-README.md (Finale Jury-Version)
-FörderMatch AI
-Überblick
-FörderMatch AI ist ein KI-gestütztes System zur Analyse der Förderfähigkeit von Unternehmen gegenüber staatlichen Förderprogrammen.
-Die Förderlandschaft in Deutschland ist komplex: Förderprogramme bestehen aus juristischen Richtlinien, Merkblättern und ergänzenden Dokumenten, deren Anforderungen häufig schwer nachvollziehbar sind.
-FörderMatch AI löst dieses Problem durch eine strukturierte Wissensbasis für Förderprogramme, die mit Retrieval-Augmented Generation (RAG), semantischer Suche und einer regelbasierten Matching-Engine kombiniert wird.
-Das System analysiert ein Unternehmensprofil und ermittelt:
-welche Förderprogramme potenziell passen
-warum sie passen oder nicht passen
-welche Richtlinienstellen diese Bewertung begründen
-Damit entsteht ein transparentes KI-Assistenzsystem für Fördermittelentscheidungen.
-Kernfunktionen
-1. Semantische Analyse von Förderprogrammen
-Förderrichtlinien werden:
-aus PDFs extrahiert
-in Text-Chunks aufgeteilt
-als Embeddings gespeichert
-über eine Vektor-Datenbank semantisch durchsuchbar gemacht
-So kann das System relevante Richtlinienstellen gezielt abrufen.
-2. Regelbasierte Förderfähigkeitsprüfung
-Eine Python Rule Engine prüft zentrale Kriterien wie:
-Unternehmensgröße
-Umsatzgrenzen
-Projektstatus
-Förderausschlüsse
-Programmrestriktionen
-Das Ergebnis ist ein transparenter Score pro Programm.
-3. Evidenzbasierte Ergebnisdarstellung
-Zu jedem Förderprogramm liefert das System:
-eine strukturierte Programmzusammenfassung
-eine Förderfähigkeitsbewertung
-relevante Textstellen aus Richtlinien
-direkte Quellenlinks zu Originaldokumenten
-Alle Aussagen sind nachvollziehbar auf Dokumente zurückführbar.
-4. Webbasierte Demo-Anwendung
-Die Demo-Web-App ermöglicht:
-Eingabe eines Unternehmensprofils
-Ranking passender Förderprogramme
-Detailanalyse einzelner Programme
-Export eines Förderreports als PDF
-Technologiestack
-Frontend
-HTML
-CSS
-Vanilla JavaScript
-Backend
-Python
-FastAPI
-Datenhaltung
-SQLite (Programmdaten und Metadaten)
-Chroma (Vektor-Datenbank)
-KI-Komponenten
-Embeddings für semantische Suche
-Retrieval-Augmented Generation (RAG)
-Regelbasierte Matching-Engine
-Systemarchitektur
-Die Architektur trennt drei Ebenen:
-Dokumentverarbeitung
-Semantisches Retrieval
-Programm-Matching
-PDF Dokumente
-      ↓
-Text-Extraktion
-      ↓
-Chunking
-      ↓
-Embeddings
-      ↓
-Chroma Vector DB
-      ↓
+# FörderMatch AI
+
+## Overview
+
+**FörderMatch AI** is an AI-powered system that analyzes the eligibility of companies for public funding programs.
+
+The German funding landscape is highly complex: programs are defined through legal guidelines, technical documents, and fragmented requirements that are difficult to interpret.
+
+This project demonstrates how **structured data, semantic search, and rule-based reasoning** can be combined into a transparent decision-support system.
+
+
+## Key Features
+
+### 1. Semantic Analysis of Funding Programs
+
+* PDF-based funding guidelines are parsed and chunked
+* Text is embedded and stored in a vector database (Chroma)
+* Relevant sections are retrieved via semantic similarity
+
+→ Enables targeted access to legally relevant content
+
+
+### 2. Rule-Based Eligibility Engine
+
+* Deterministic rule engine evaluates:
+
+  * Company size (KMU logic)
+  * Revenue thresholds
+  * Project status (e.g. “before project start”)
+  * Exclusion criteria
+* Produces a transparent, explainable rule score
+
+
+### 3. Hybrid Scoring System
+
+Each program is evaluated using:
+
+* **Rule-based score** (hard constraints & eligibility)
+* **Semantic score** (relevance of retrieved documents)
+
+→ Combined into a final ranking score
+
+
+### 4. Evidence-Based Output (RAG)
+
+* Results are grounded in original documents
+* System returns:
+
+  * structured summaries
+  * requirements & risks
+  * exact source references (incl. page references)
+
+→ No “black-box AI” – every output is traceable
+
+
+### 5. Interactive Web Demo
+
+* Input: company profile
+* Output:
+
+  * ranked funding programs
+  * explanation of fit
+  * detailed program analysis
+  * PDF export
+
+
+## Tech Stack
+
+**Frontend**
+
+* HTML, CSS, Vanilla JavaScript
+
+**Backend**
+
+* Python, FastAPI
+
+**Data Layer**
+
+* SQLite (structured program data & rules)
+* Chroma (vector database for embeddings)
+
+**AI / Logic**
+
+* Embeddings (semantic retrieval)
+* Retrieval-Augmented Generation (RAG)
+* Rule-based scoring engine
+
+
+## System Architecture (High-Level)
+
+```
+PDF Documents
+    ↓
+Text Extraction & Chunking
+    ↓
+Embeddings → Chroma Vector DB
+    ↓
 Retrieval Service
-      ↓
+    ↓
 Rule Engine
-      ↓
+    ↓
 Scoring Service
-      ↓
-API
-      ↓
-Web Demo
-Demo Ablauf
-Unternehmensprofil wird eingegeben
-Backend analysiert das Profil
-Programme werden semantisch durchsucht
-Matching-Regeln werden angewendet
-Programme werden nach Score gerankt
-Detailanalyse zeigt relevante Richtlinienstellen
-Projektziel
-Das Projekt zeigt, wie KI-basierte Dokumentanalyse und regelbasierte Entscheidungslogik kombiniert werden können, um komplexe juristische Richtlinien transparent und nutzbar zu machen.
+    ↓
+FastAPI Backend
+    ↓
+Web Application
+```
+
+
+## Example Workflow
+
+1. User inputs a company profile
+2. System retrieves relevant guideline passages
+3. Rule engine evaluates eligibility
+4. Scores are calculated per program
+5. Programs are ranked
+6. Detailed view shows reasoning + sources
+
+
+## Project Structure
+
+```
+backend/
+  api/                # FastAPI endpoints
+  services/           # retrieval, scoring, rule engine, RAG
+  db/                 # schema & repository layer
+
+scripts/
+  ingest_program.py   # document ingestion pipeline
+  rank_programs.py    # ranking logic
+  validate_ranking.py # evaluation & testing
+
+demo_webapp/
+  index.html
+  styles.css
+  app.js
+
+data/
+  programs.db         # SQLite database
+  chroma/             # vector embeddings
+```
+
+
+## What This Project Demonstrates
+
+* Designing **hybrid AI systems (rules + embeddings)**
+* Building **RAG pipelines with source grounding**
+* Translating **legal/complex documents into structured logic**
+* End-to-end system design:
+
+  * data ingestion
+  * retrieval
+  * scoring
+  * API
+  * frontend
+
+
+## Future Improvements
+
+* Automated document updates & monitoring
+* Expanded funding program coverage
+* LLM-based explanation refinement
+* Multi-user / production-ready deployment
+
+
+## Live Demo
+
+Frontend:
+https://foerdermatch-ai.up.railway.app
+
+Backend:
+https://foerdermatch-ai-backend.up.railway.app
+
+
+## Author
+
+Merle Mai
+B.Sc. Computer Science (TUHH)
