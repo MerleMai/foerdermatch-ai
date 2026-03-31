@@ -540,7 +540,18 @@ def root() -> dict[str, Any]:
 
 @app.get("/health")
 def health() -> dict[str, Any]:
-    return {"status": "ok", "db_exists": DB.exists(), "chroma_exists": CHROMA_DIR.exists()}
+    db_exists = DB.exists()
+    chroma_exists = CHROMA_DIR.exists()
+
+    status = "ok" if (db_exists and chroma_exists) else "error"
+
+    return {
+        "status": status,
+        "db_exists": db_exists,
+        "chroma_exists": chroma_exists,
+        "db_path": str(DB),
+        "chroma_dir": str(CHROMA_DIR),
+    }
 
 
 @app.get("/documents/{document_id}/file", name="open_document_file")

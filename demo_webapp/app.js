@@ -234,10 +234,15 @@ async function checkHealth() {
     }
 
     const data = await response.json();
-    if (data.status === "ok") {
+
+    if (data.status === "ok" && data.db_exists === true && data.chroma_exists === true) {
       apiPillState("Backend verbunden", "ok");
+    } else if (data.db_exists === false || data.chroma_exists === false) {
+      apiPillState("Backend unvollständig initialisiert", "error");
+      console.error("Health check: DB oder Chroma fehlt", data);
     } else {
-      apiPillState("Backend antwortet unerwartet", "idle");
+      apiPillState("Backend antwortet unerwartet", "error");
+      console.error("Health check: unerwartete Antwort", data);
     }
   } catch (error) {
     apiPillState("Backend nicht erreichbar", "error");
