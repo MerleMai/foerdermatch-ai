@@ -1,0 +1,398 @@
+{
+  "details": [
+    {
+      "program_id": "KFW-ERP-DIGI-511",
+      "detail": {
+        "summary": "- Förderart: zinsgünstiger Kredit für Digitalisierungsvorhaben\n- Zielgruppe: KMU und Unternehmen in Deutschland\n- Wichtig: Antrag vor Beginn des Vorhabens über Finanzierungspartner",
+        "program_requirements": [
+          {
+            "item": "Antrag vor Beginn des Digitalisierungsvorhabens einreichen.",
+            "criticality": "high",
+            "source_refs": []
+          },
+          {
+            "item": "Investitionen und Betriebsmittel des Vorhabens nachvollziehbar dokumentieren.",
+            "criticality": "medium",
+            "source_refs": []
+          }
+        ],
+        "typical_risks": [
+          {
+            "risk": "Ein bereits begonnenes Projekt kann die Förderfähigkeit gefährden.",
+            "criticality": "high",
+            "source_refs": []
+          }
+        ],
+        "sources": [
+            {
+                "doc_type": "merkblatt_511",
+                "filename": "KfW ERP-Förderkredit Digitalisierung 511 – Merkblatt",
+                "page_ref": "S. 7",
+                "document_id": 1,
+                "chunk_index": 0,
+                "distance": 0.31,
+                "source_url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000005251_M_511.pdf",
+                "filepath": null,
+                "url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000005251_M_511.pdf"
+            },
+            {
+                "doc_type": "kmu_definition",
+                "filename": "KfW KMU-Definition",
+                "page_ref": "S. 1",
+                "document_id": 8,
+                "chunk_index": 0,
+                "distance": 0.36,
+                "source_url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000000196_M_F_KMU-Definition.pdf",
+                "filepath": null,
+                "url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000000196_M_F_KMU-Definition.pdf"
+            },
+            {
+                "doc_type": "allgemeines_merkblatt_beihilfen",
+                "filename": "KfW Allgemeines Merkblatt Beihilfen",
+                "page_ref": "S. 1",
+                "document_id": 9,
+                "chunk_index": 0,
+                "distance": 0.39,
+                "source_url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000000065_M_Beihilfen.pdf",
+                "filepath": null,
+                "url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000000065_M_Beihilfen.pdf"
+            }
+        ],
+        "disclaimer": "Statische Portfolio-Demo ohne Live-Backend."
+      }
+    },
+    {
+      "program_id": "KFW-ERP-DIGI-512",
+      "detail": {
+        "summary": "- Förderart: Kreditvariante mit Haftungsfreistellung\n- Zielgruppe: Unternehmen mit Digitalisierungs- und Finanzierungsbedarf\n- Wichtig: Finanzierungspartner frühzeitig einbinden",
+        "program_requirements": [
+          {
+            "item": "Finanzierungsbedarf und gewünschte Haftungsfreistellung klären.",
+            "criticality": "medium",
+            "source_refs": []
+          },
+          {
+            "item": "Antrag vor Projektbeginn über Hausbank oder Finanzierungspartner vorbereiten.",
+            "criticality": "high",
+            "source_refs": []
+          }
+        ],
+        "typical_risks": [
+          {
+            "risk": "Unklare Finanzierung oder verspätete Antragstellung kann die Nutzung erschweren.",
+            "criticality": "medium",
+            "source_refs": []
+          }
+        ],
+        "sources": [
+            {
+                "doc_type": "merkblatt_512",
+                "filename": "KfW ERP-Förderkredit Digitalisierung 512 – Merkblatt",
+                "page_ref": "S. 1",
+                "document_id": 2,
+                "chunk_index": 0,
+                "distance": 0.34,
+                "source_url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000005250_M_512.pdf",
+                "filepath": null,
+                "url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000005250_M_512.pdf"
+            },
+            {
+                "doc_type": "allgemeine_bedingungen_erp",
+                "filename": "KfW Allgemeine Bestimmungen ERP",
+                "page_ref": "S. 1",
+                "document_id": 10,
+                "chunk_index": 0,
+                "distance": 0.40,
+                "source_url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000000194_AB_ERP.pdf",
+                "filepath": null,
+                "url": "https://www.kfw.de/PDF/Download-Center/Förderprogramme-(Inlandsförderung)/PDF-Dokumente/6000000194_AB_ERP.pdf"
+            }
+        ],
+        "disclaimer": "Statische Portfolio-Demo ohne Live-Backend."
+      }
+    },
+    {
+      "program_id": "ZIM",
+      "detail": {
+        "summary": "- Förderart: Zuschuss für Forschungs- und Entwicklungsprojekte\n- Zielgruppe: innovative KMU\n- Wichtig: technisches Risiko und Innovationshöhe müssen plausibel sein",
+        "program_requirements": [
+          {
+            "item": "FuE-Gehalt, technisches Risiko und Innovationshöhe nachvollziehbar darstellen.",
+            "criticality": "high",
+            "source_refs": []
+          },
+          {
+            "item": "Arbeitsplan, Projektziele und Verwertungsperspektive dokumentieren.",
+            "criticality": "medium",
+            "source_refs": []
+          }
+        ],
+        "typical_risks": [
+          {
+            "risk": "Ohne erkennbaren Forschungs- oder Entwicklungscharakter sinkt die Passung.",
+            "criticality": "medium",
+            "source_refs": []
+          }
+        ],
+        "sources": [
+            {
+                "doc_type": "richtlinie_zim",
+                "filename": "ZIM Förderrichtlinie 2025",
+                "page_ref": "S. 1",
+                "document_id": 3,
+                "chunk_index": 0,
+                "distance": 0.38,
+                "source_url": "https://www.zim.de/ZIM/Redaktion/DE/Downloads/Richtlinien/richtlinie-zim-2025.pdf?__blob=publicationFile&v=7",
+                "filepath": null,
+                "url": "https://www.zim.de/ZIM/Redaktion/DE/Downloads/Richtlinien/richtlinie-zim-2025.pdf?__blob=publicationFile&v=7"
+            },
+            {
+                "doc_type": "de_minimis_infoblatt",
+                "filename": "ZIM De-minimis-Infoblatt",
+                "page_ref": "S. 1",
+                "document_id": 11,
+                "chunk_index": 0,
+                "distance": 0.42,
+                "source_url": "https://www.zim.de/ZIM/Redaktion/DE/Downloads/Sonstiges/de-minimis-infoblatt.pdf?__blob=publicationFile&v=2",
+                "filepath": null,
+                "url": "https://www.zim.de/ZIM/Redaktion/DE/Downloads/Sonstiges/de-minimis-infoblatt.pdf?__blob=publicationFile&v=2"
+            }
+        ],
+        "disclaimer": "Statische Portfolio-Demo ohne Live-Backend."
+      }
+    },
+    {
+      "program_id": "KMU-INNOVATIV",
+      "detail": {
+        "summary": "- Förderart: Zuschuss für risikoreiche FuE-Vorhaben\n- Zielgruppe: forschungsaktive KMU\n- Wichtig: Projektskizze, Neuheitsgrad und Verwertungsperspektive",
+        "program_requirements": [
+          {
+            "item": "Forschungsrisiko und Neuheitsgrad plausibel begründen.",
+            "criticality": "high",
+            "source_refs": []
+          },
+          {
+            "item": "Projektskizze mit Zielen, Arbeitsplan und Verwertungsperspektive vorbereiten.",
+            "criticality": "medium",
+            "source_refs": []
+          }
+        ],
+        "typical_risks": [
+          {
+            "risk": "Zu wenig Forschungscharakter oder unklare Verwertung kann die Förderfähigkeit schwächen.",
+            "criticality": "medium",
+            "source_refs": []
+          }
+        ],
+        "sources": [
+            {
+                "doc_type": "richtlinie_kmu_innovativ",
+                "filename": "KMU-innovativ Richtlinie",
+                "page_ref": "S. 1",
+                "document_id": 4,
+                "chunk_index": 0,
+                "distance": 0.41,
+                "source_url": "https://www.zukunft-der-wertschoepfung.de/wp-content/uploads/2023/07/BK_KMU-innovativ_BAnz-AT-26.07.2023-B3-1.pdf",
+                "filepath": null,
+                "url": "https://www.zukunft-der-wertschoepfung.de/wp-content/uploads/2023/07/BK_KMU-innovativ_BAnz-AT-26.07.2023-B3-1.pdf"
+            },
+            {
+                "doc_type": "richtlinie_update_kmu_innovativ",
+                "filename": "KMU-innovativ Änderung 2025",
+                "page_ref": "S. 1",
+                "document_id": 12,
+                "chunk_index": 0,
+                "distance": 0.43,
+                "source_url": "https://www.zukunft-der-wertschoepfung.de/wp-content/uploads/2025/01/Aenderung_BK_KMU-i_BAnz-AT-23.01.2025-B5.pdf",
+                "filepath": null,
+                "url": "https://www.zukunft-der-wertschoepfung.de/wp-content/uploads/2025/01/Aenderung_BK_KMU-i_BAnz-AT-23.01.2025-B5.pdf"
+            },
+            {
+                "doc_type": "informationsbroschuere_kmu_innovativ",
+                "filename": "KMU-innovativ Informationsbroschüre",
+                "page_ref": "S. 1",
+                "document_id": 13,
+                "chunk_index": 0,
+                "distance": 0.46,
+                "source_url": "https://www.bmbf.de/SharedDocs/Publikationen/DE/1/30295_KMU-innovativ_Vorfahrt_fuer_Spitzenforschung.pdf?__blob=publicationFile&v=7",
+                "filepath": null,
+                "url": "https://www.bmbf.de/SharedDocs/Publikationen/DE/1/30295_KMU-innovativ_Vorfahrt_fuer_Spitzenforschung.pdf?__blob=publicationFile&v=7"
+            }
+        ],
+        "disclaimer": "Statische Portfolio-Demo ohne Live-Backend."
+      }
+    },
+    {
+      "program_id": "EEW-BAFA-M3",
+      "detail": {
+        "summary": "- Förderart: Zuschuss für Energiemanagement, MSR und Sensorik\n- Zielgruppe: Unternehmen mit Energieeffizienzmaßnahmen\n- Wichtig: technische Anforderungen und passende Software prüfen",
+        "program_requirements": [
+          {
+            "item": "MSR-, Sensorik- und Softwarekomponenten technisch sauber beschreiben.",
+            "criticality": "medium",
+            "source_refs": []
+          },
+          {
+            "item": "Antrag vor Umsetzung der Maßnahme einreichen.",
+            "criticality": "high",
+            "source_refs": []
+          }
+        ],
+        "typical_risks": [
+          {
+            "risk": "Nicht passende Software oder unklare technische Einbindung kann problematisch sein.",
+            "criticality": "medium",
+            "source_refs": []
+          }
+        ],
+        "sources": [
+            {
+                "doc_type": "eew_modul3_merkblatt",
+                "filename": "EEW Modul 3 Merkblatt",
+                "page_ref": "S. 1",
+                "document_id": 5,
+                "chunk_index": 0,
+                "distance": 0.43,
+                "source_url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/eew_modul3_ems_merkblatt_2025.pdf?__blob=publicationFile&v=5",
+                "filepath": null,
+                "url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/eew_modul3_ems_merkblatt_2025.pdf?__blob=publicationFile&v=5"
+            },
+            {
+                "doc_type": "eew_softwareliste",
+                "filename": "EEW Liste förderfähige Energiemanagement-Software",
+                "page_ref": "S. 1",
+                "document_id": 14,
+                "chunk_index": 0,
+                "distance": 0.50,
+                "source_url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/eew_liste_foerderfaehige_software.pdf?__blob=publicationFile&v=4",
+                "filepath": null,
+                "url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/eew_liste_foerderfaehige_software.pdf?__blob=publicationFile&v=4"
+            }
+        ],
+        "disclaimer": "Statische Portfolio-Demo ohne Live-Backend."
+      }
+    },
+    {
+      "program_id": "EEW-BAFA-M4-PREMIUM",
+      "detail": {
+        "summary": "- Förderart: Zuschuss für technologieoffene Prozessoptimierung\n- Zielgruppe: Unternehmen mit Effizienz- und Dekarbonisierungsmaßnahmen\n- Wichtig: Einsparkonzept und THG-Minderung",
+        "program_requirements": [
+          {
+            "item": "Einsparkonzept und erwartete THG-Minderung nachvollziehbar darstellen.",
+            "criticality": "high",
+            "source_refs": []
+          },
+          {
+            "item": "Investitionskosten und technische Maßnahme eindeutig abgrenzen.",
+            "criticality": "medium",
+            "source_refs": []
+          }
+        ],
+        "typical_risks": [
+          {
+            "risk": "Unzureichende Nachweise zur Einsparwirkung können die Förderfähigkeit gefährden.",
+            "criticality": "high",
+            "source_refs": []
+          }
+        ],
+        "sources": [
+            {
+                "doc_type": "eew_modul4_merkblatt",
+                "filename": "EEW Modul 4 Merkblatt",
+                "page_ref": "S. 1",
+                "document_id": 6,
+                "chunk_index": 0,
+                "distance": 0.45,
+                "source_url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/eew_modul_4_oap_merkblatt_2025.pdf?__blob=publicationFile&v=5",
+                "filepath": null,
+                "url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/eew_modul_4_oap_merkblatt_2025.pdf?__blob=publicationFile&v=5"
+            },
+            {
+                "doc_type": "eew_foerderrichtlinie",
+                "filename": "EEW Förderrichtlinie",
+                "page_ref": "S. 1",
+                "document_id": 15,
+                "chunk_index": 0,
+                "distance": 0.48,
+                "source_url": "https://www.wettbewerb-energieeffizienz.de/WENEFF/Redaktion/DE/PDF-Anlagen-FW/PDF-Anlagen-Transf/richtlinie-bmwk-zuschuss-kredit-25-01-2024.pdf?__blob=publicationFile&v=7",
+                "filepath": null,
+                "url": "https://www.wettbewerb-energieeffizienz.de/WENEFF/Redaktion/DE/PDF-Anlagen-FW/PDF-Anlagen-Transf/richtlinie-bmwk-zuschuss-kredit-25-01-2024.pdf?__blob=publicationFile&v=7"
+            },
+            {
+                "doc_type": "eew_infoblatt_co2_faktoren",
+                "filename": "EEW Infoblatt CO2-Faktoren",
+                "page_ref": "S. 1",
+                "document_id": 16,
+                "chunk_index": 0,
+                "distance": 0.52,
+                "source_url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/eew_infoblatt_co2_faktoren_2025.pdf?__blob=publicationFile&v=4",
+                "filepath": null,
+                "url": "https://www.bafa.de/SharedDocs/Downloads/DE/Energie/eew_infoblatt_co2_faktoren_2025.pdf?__blob=publicationFile&v=4"
+            }
+        ],
+        "disclaimer": "Statische Portfolio-Demo ohne Live-Backend."
+      }
+    },
+    {
+      "program_id": "GO-INNO",
+      "detail": {
+        "summary": "- Förderart: Zuschuss für externe Innovationsberatung\n- Zielgruppe: kleine Unternehmen mit Innovationsvorhaben\n- Wichtig: autorisierte Beratung und Start erst nach Förderklärung",
+        "program_requirements": [
+          {
+            "item": "Innovationsberatungsbedarf und Beratungsziel klar beschreiben.",
+            "criticality": "medium",
+            "source_refs": []
+          },
+          {
+            "item": "Autorisierte Beratung prüfen und Beratung nicht vor Förderklärung starten.",
+            "criticality": "high",
+            "source_refs": []
+          }
+        ],
+        "typical_risks": [
+          {
+            "risk": "Eine nicht passende oder nicht autorisierte Beratung kann die Förderung ausschließen.",
+            "criticality": "medium",
+            "source_refs": []
+          }
+        ],
+        "sources": [
+            {
+                "doc_type": "go_inno_richtlinie",
+                "filename": "go-inno Richtlinie",
+                "page_ref": "S. 1",
+                "document_id": 7,
+                "chunk_index": 0,
+                "distance": 0.47,
+                "source_url": "https://www.innovation-beratung-foerderung.de/INNO/Redaktion/DE/Downloads/Unterlagen_go-inno/go-inno_Richtlinie_26112020.pdf?__blob=publicationFile&v=2",
+                "filepath": null,
+                "url": "https://www.innovation-beratung-foerderung.de/INNO/Redaktion/DE/Downloads/Unterlagen_go-inno/go-inno_Richtlinie_26112020.pdf?__blob=publicationFile&v=2"
+            },
+            {
+                "doc_type": "go_inno_merkblatt",
+                "filename": "go-inno Merkblatt / Flyer",
+                "page_ref": "S. 1",
+                "document_id": 17,
+                "chunk_index": 0,
+                "distance": 0.51,
+                "source_url": "https://www.bundeswirtschaftsministerium.de/Redaktion/DE/Publikationen/Technologie/bmwk-innovationsgutscheine-go-inno-flyer.pdf?__blob=publicationFile&v=5",
+                "filepath": null,
+                "url": "https://www.bundeswirtschaftsministerium.de/Redaktion/DE/Publikationen/Technologie/bmwk-innovationsgutscheine-go-inno-flyer.pdf?__blob=publicationFile&v=5"
+            },
+            {
+                "doc_type": "go_inno_orientierungshilfe",
+                "filename": "go-inno Orientierungshilfe Förderfähigkeit",
+                "page_ref": "S. 1",
+                "document_id": 18,
+                "chunk_index": 0,
+                "distance": 0.54,
+                "source_url": "https://www.innovation-beratung-foerderung.de/INNO/Redaktion/DE/Downloads/Unterlagen_go-inno/go-inno_orientierungshilfe_foerderfaehigkeit.pdf?__blob=publicationFile&v=1",
+                "filepath": null,
+                "url": "https://www.innovation-beratung-foerderung.de/INNO/Redaktion/DE/Downloads/Unterlagen_go-inno/go-inno_orientierungshilfe_foerderfaehigkeit.pdf?__blob=publicationFile&v=1"
+            }
+        ],
+        "disclaimer": "Statische Portfolio-Demo ohne Live-Backend."
+      }
+    }
+  ]
+}
