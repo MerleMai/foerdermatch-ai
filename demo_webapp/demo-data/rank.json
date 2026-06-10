@@ -1,0 +1,137 @@
+{
+  "results": [
+    {
+      "program_id": "KFW-ERP-DIGI-511",
+      "program_name": "ERP-Förderkredit Digitalisierung",
+      "program_name_official": "KfW ERP-Förderkredit Digitalisierung",
+      "total_score": 86,
+      "effective_total_score": 86,
+      "rule_score": 52,
+      "semantic_score": 34,
+      "hard_fail": false,
+      "hard_fail_reasons": [],
+      "missing_fields": [],
+      "rules": [],
+      "status": "eligible",
+      "next_actions": [
+        "Digitalisierungsvorhaben konkret beschreiben.",
+        "Investitions- und Betriebsmittelkosten vorbereiten.",
+        "Antrag vor Projektbeginn über Finanzierungspartner einreichen."
+      ]
+    },
+    {
+      "program_id": "KFW-ERP-DIGI-512",
+      "program_name": "ERP-Förderkredit Digitalisierung mit Haftungsfreistellung",
+      "program_name_official": "KfW ERP-Förderkredit Digitalisierung 512",
+      "total_score": 79,
+      "effective_total_score": 79,
+      "rule_score": 48,
+      "semantic_score": 31,
+      "hard_fail": false,
+      "hard_fail_reasons": [],
+      "missing_fields": [],
+      "rules": [],
+      "status": "eligible",
+      "next_actions": [
+        "Finanzierungsbedarf und gewünschte Haftungsfreistellung prüfen.",
+        "Hausbank oder Finanzierungspartner frühzeitig einbinden.",
+        "Projektstart erst nach Klärung der Antragstellung planen."
+      ]
+    },
+    {
+      "program_id": "ZIM",
+      "program_name": "Zentrales Innovationsprogramm Mittelstand",
+      "program_name_official": "ZIM",
+      "total_score": 72,
+      "effective_total_score": 72,
+      "rule_score": 43,
+      "semantic_score": 29,
+      "hard_fail": false,
+      "hard_fail_reasons": [],
+      "missing_fields": [],
+      "rules": [],
+      "status": "eligible",
+      "next_actions": [
+        "FuE-Gehalt und technisches Risiko herausarbeiten.",
+        "Arbeitsplan und Projektziele dokumentieren.",
+        "Antrag vor Projektbeginn vorbereiten."
+      ]
+    },
+    {
+      "program_id": "KMU-INNOVATIV",
+      "program_name": "KMU-innovativ: Zukunft der Wertschöpfung",
+      "program_name_official": "KMU-innovativ",
+      "total_score": 68,
+      "effective_total_score": 68,
+      "rule_score": 40,
+      "semantic_score": 28,
+      "hard_fail": false,
+      "hard_fail_reasons": [],
+      "missing_fields": [],
+      "rules": [],
+      "status": "maybe",
+      "next_actions": [
+        "Forschungsrisiko und Neuheitsgrad plausibel begründen.",
+        "Projektskizze mit Verwertungsperspektive vorbereiten.",
+        "Einreichungsstichtage prüfen."
+      ]
+    },
+    {
+      "program_id": "EEW-BAFA-M3",
+      "program_name": "EEW Modul 3 – MSR, Sensorik und Energiemanagement-Software",
+      "program_name_official": "Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 3",
+      "total_score": 61,
+      "effective_total_score": 61,
+      "rule_score": 36,
+      "semantic_score": 25,
+      "hard_fail": false,
+      "hard_fail_reasons": [],
+      "missing_fields": [],
+      "rules": [],
+      "status": "maybe",
+      "next_actions": [
+        "Energiemanagement-Software und MSR-Komponenten konkretisieren.",
+        "Technische Anforderungen prüfen.",
+        "Antrag vor Umsetzung einreichen."
+      ]
+    },
+    {
+      "program_id": "EEW-BAFA-M4-PREMIUM",
+      "program_name": "EEW Modul 4 Premium – Prozessoptimierung",
+      "program_name_official": "Bundesförderung für Energie- und Ressourceneffizienz in der Wirtschaft – Modul 4 Premium",
+      "total_score": 57,
+      "effective_total_score": 57,
+      "rule_score": 34,
+      "semantic_score": 23,
+      "hard_fail": false,
+      "hard_fail_reasons": [],
+      "missing_fields": [],
+      "rules": [],
+      "status": "maybe",
+      "next_actions": [
+        "Einsparkonzept und THG-Minderung vorbereiten.",
+        "Investitionskosten und technische Maßnahme abgrenzen.",
+        "Fördermodul vor Antragstellung prüfen."
+      ]
+    },
+    {
+      "program_id": "GO-INNO",
+      "program_name": "go-inno – Innovationsgutscheine",
+      "program_name_official": "go-inno",
+      "total_score": 49,
+      "effective_total_score": 49,
+      "rule_score": 30,
+      "semantic_score": 19,
+      "hard_fail": false,
+      "hard_fail_reasons": [],
+      "missing_fields": [],
+      "rules": [],
+      "status": "maybe",
+      "next_actions": [
+        "Beratungsbedarf und Innovationsziel beschreiben.",
+        "Autorisierte Beratung prüfen.",
+        "Beratung nicht vor Förderklärung starten."
+      ]
+    }
+  ]
+}
