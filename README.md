@@ -1,5 +1,7 @@
 # FörderMatch AI
 
+https://merlemai.github.io/foerdermatch-ai/
+
 ## Overview
 
 **FörderMatch AI** is an AI-powered system that analyzes the eligibility of companies for public funding programs.
@@ -162,15 +164,24 @@ data/
 * LLM-based explanation refinement
 * Multi-user / production-ready deployment
 
+## Public Demo Notice
+
+The original version of FörderMatch AI used a full FastAPI backend, SQLite database, Chroma vector database, semantic retrieval, Retrieval-Augmented Generation (RAG), and a rule-based eligibility engine.
+
+To keep the project publicly accessible without ongoing infrastructure and API costs, the current GitHub Pages deployment has been converted into a static demonstration version. The public demo preserves the original user experience, ranking workflow, program analysis views, and source transparency, while using pre-generated example results instead of live backend inference.
+
+The complete backend architecture, retrieval pipeline, scoring logic, and data ingestion workflow remain available in this repository and are documented throughout the codebase.
 
 ## Live Demo
 
-Frontend:
-https://foerdermatch-ai.up.railway.app
+Live Demo
 
-Backend:
-https://foerdermatch-ai-backend.up.railway.app
+Frontend (GitHub Pages):
+https://merlemai.github.io/foerdermatch-ai/
 
+Note:
+The public demo is a static portfolio version.
+The original system architecture and backend implementation remain available in this repository.
 
 ## Author
 
