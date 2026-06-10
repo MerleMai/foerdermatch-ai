@@ -1,3 +1,5 @@
+const STATIC_DEMO_MODE = true;
+
 let currentResults = [];
 let currentDetail = null;
 let currentProfile = null;
@@ -35,6 +37,14 @@ function getApiBase() {
   if (stored) return stored.replace(/\/+$/, "");
 
   return "https://foerdermatch-ai-backend.up.railway.app";
+}
+
+async function loadDemoJson(path) {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Demo-Datei fehlt: ${path}`);
+  }
+  return response.json();
 }
 
 function setButtonDisabled(id, disabled, loadingText = null, originalText = null) {
@@ -224,6 +234,11 @@ function buildAutoQuery(profile) {
 }
 
 async function checkHealth() {
+  if (STATIC_DEMO_MODE) {
+    apiPillState("Statische Demo aktiv", "ok");
+    return;
+  }
+
   apiPillState("Backend wird geprüft …", "idle");
 
   try {
@@ -1276,21 +1291,26 @@ async function runRanking(event) {
       include_detail_top_n: 0,
     };
 
-    const response = await fetch(`${getApiBase()}/rank`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
     let data = null;
-    try {
-      data = await response.json();
-    } catch (_) {
-      data = null;
-    }
 
-    if (!response.ok) {
-      throw new Error(data?.detail || data?.error || `HTTP ${response.status}`);
+    if (STATIC_DEMO_MODE) {
+      data = await loadDemoJson("./demo-data/rank.json");
+    } else {
+      const response = await fetch(`${getApiBase()}/rank`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      try {
+        data = await response.json();
+      } catch (_) {
+        data = null;
+      }
+
+      if (!response.ok) {
+        throw new Error(data?.detail || data?.error || `HTTP ${response.status}`);
+      }
     }
 
     if (requestId !== rankRequestId) return;
@@ -1369,21 +1389,33 @@ async function loadDetail(programId, buttonEl = null) {
   };
 
   try {
-    const response = await fetch(`${getApiBase()}/detail`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
     let data = null;
-    try {
-      data = await response.json();
-    } catch (_) {
-      data = null;
-    }
 
-    if (!response.ok) {
-      throw new Error(data?.detail || data?.error || `HTTP ${response.status}`);
+    if (STATIC_DEMO_MODE) {
+      const detailsData = await loadDemoJson("./demo-data/details.json");
+      data = safeArray(detailsData?.details).find(
+        (x) => String(x?.program_id) === String(programId)
+      );
+
+      if (!data) {
+        throw new Error(`Keine Demo-Details für ${programId} gefunden.`);
+      }
+    } else {
+      const response = await fetch(`${getApiBase()}/detail`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      try {
+        data = await response.json();
+      } catch (_) {
+        data = null;
+      }
+
+      if (!response.ok) {
+        throw new Error(data?.detail || data?.error || `HTTP ${response.status}`);
+      }
     }
 
     const matched =
